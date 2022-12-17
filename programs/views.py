@@ -4,12 +4,13 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import get_object_or_404
 from django.views.generic import ListView, DetailView
 from reportlab.pdfgen import canvas
+# from reportlab.pdfbase import pdfmetrics
+from reportlab.lib import enums
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
+from .models import Program
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Image
-from .models import Program
-
 # Create your views here.
 
 
@@ -109,47 +110,52 @@ def generate_pdf(request, pk):
 
     # Create a list of paragraphs to draw on the PDF
     elements = []
-    elements.append(
-        Paragraph(
-            "<a href='https://www.udom.ac.tz'>THE UNIVERSITY OF DODOMA </a>",
-            styles['Heading1']))
-    elements.append(Paragraph(f"{program.college}", styles['Heading2']))
+    university_head = "<a href='https://www.udom.ac.tz'>THE UNIVERSITY OF DODOMA </a>"
+    university_head_style = getSampleStyleSheet()['Heading1']
+    university_head_style.alignment = enums.TA_CENTER
+    college_head = f"{program.college}"
+    college_head_style = getSampleStyleSheet()['Heading2']
+    college_head_style.alignment = enums.TA_CENTER
+    paragrap_style = getSampleStyleSheet()['Normal']
+    paragrap_style.fontSize = 11
+    elements.append(Paragraph(university_head, style=university_head_style))
+    elements.append(Paragraph(college_head, style=college_head_style))
     elements.append(
         Image(
             "https://imgs.search.brave.com/md-s9-5eWujI9NxzCGJxGDSugTfBhqJvsUdta4Xk5kc/rs:fit:319:320:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzYxLzc0/L2Y4LzYxNzRmOGVi/MzQ3MDlmNGQwNWRm/ZWU3NTZiYzA5MTkz/LnBuZw",
             width=100,
             height=100))
     elements.append(
-        Paragraph(f"<a href='https://udom-curriculum.up.railway.app/'> The University of Dodoma program curriculum </a>", styles['Heading2']))
-    elements.append(Paragraph(f"{program.name}", styles['Heading2']))
+        Paragraph(f"The University of Dodoma Program curriculum",
+                  style=college_head_style))
+    elements.append(Paragraph(f"{program.name}", style=college_head_style))
     elements.append(Paragraph(f"Description", styles['Heading3']))
-    elements.append(Paragraph(f"{program.description}", styles['Normal']))
+    elements.append(Paragraph(f"{program.description}", style=paragrap_style))
     elements.append(Paragraph(f"Program tuition fee", styles['Heading3']))
-    elements.append(Paragraph(f"Tsh {program.fee}", styles['Normal']))
+    elements.append(Paragraph(f"Tsh {program.fee}", style=paragrap_style))
     elements.append(Paragraph(f"College", styles["Heading3"]))
-    elements.append(Paragraph(f"{program.college}", styles['Normal']))
+    elements.append(Paragraph(f"{program.college}", style=paragrap_style))
     if program.knowledge:
         elements.append(Paragraph("Knowledge obtained", styles["Heading3"]))
 
-        elements.append(Paragraph(f"{program.knowledge}", styles['Normal']))
+        elements.append(Paragraph(f"{program.knowledge}",
+                                  style=paragrap_style))
     else:
         pass
 
     if program.skills:
         elements.append(Paragraph("Skills", styles["Heading3"]))
-        elements.append(Paragraph(f"{program.skills}", styles['Normal']))
+        elements.append(Paragraph(f"{program.skills}", style=paragrap_style))
     else:
         pass
-    if program.competences: 
-        elements.append(Paragraph("Competences", styles["Heading3"]))
-        elements.append(Paragraph(f"{program.competences}", styles['Normal']))
-    else:
-        pass
+    elements.append(Paragraph("Competences", styles["Heading3"]))
+    elements.append(Paragraph(f"{program.competences}", style=paragrap_style))
     elements.append(Paragraph("Special requirements", styles["Heading3"]))
     elements.append(
-        Paragraph(f"{program.special_requirements}", styles['Normal']))
+        Paragraph(f"{program.special_requirements}", style=paragrap_style))
     elements.append(Paragraph("Field of work", styles["Heading3"]))
-    elements.append(Paragraph(f"{program.fields_of_work}", styles['Normal']))
+    elements.append(
+        Paragraph(f"{program.fields_of_work}", style=paragrap_style))
 
     # Draw the PDF
     doc.build(elements)
