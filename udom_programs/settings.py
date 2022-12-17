@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-837es7d5wpn&e4nch!mv0_wj7g9ytwz90qiayq^f-7$j!m3p4+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://udom-curriculum.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
