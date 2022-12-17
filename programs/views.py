@@ -148,7 +148,7 @@ def generate_pdf(request, pk):
         elements.append(Paragraph(f"{program.skills}", style=paragrap_style))
     else:
         pass
-    if program.competences
+    if program.competences:
         elements.append(Paragraph("Competences", styles["Heading3"]))
         elements.append(Paragraph(f"{program.competences}", style=paragrap_style))
     else:
