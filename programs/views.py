@@ -119,10 +119,8 @@ def generate_pdf(request, pk):
             width=100,
             height=100))
     elements.append(
-        Paragraph(f"The University of Dodoma curriculum", styles['Heading1']))
-    elements.append(Paragraph("\n"))
+        Paragraph(f"<a href='https://udom-curriculum.up.railway.app/'> The University of Dodoma program curriculum </a>", styles['Heading2']))
     elements.append(Paragraph(f"{program.name}", styles['Heading2']))
-    elements.append(Paragraph("\n"))
     elements.append(Paragraph(f"Description", styles['Heading3']))
     elements.append(Paragraph(f"{program.description}", styles['Normal']))
     elements.append(Paragraph(f"Program tuition fee", styles['Heading3']))
