@@ -140,8 +140,11 @@ def generate_pdf(request, pk):
         elements.append(Paragraph(f"{program.skills}", styles['Normal']))
     else:
         pass
-    elements.append(Paragraph("Competences", styles["Heading3"]))
-    elements.append(Paragraph(f"{program.competences}", styles['Normal']))
+    if program.competences: 
+        elements.append(Paragraph("Competences", styles["Heading3"]))
+        elements.append(Paragraph(f"{program.competences}", styles['Normal']))
+    else:
+        pass
     elements.append(Paragraph("Special requirements", styles["Heading3"]))
     elements.append(
         Paragraph(f"{program.special_requirements}", styles['Normal']))
