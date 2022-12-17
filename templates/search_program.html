@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %} | Program List{% endblock title %}
+{% block content%}
+<h2 class="pt-3">
+  Program offered at the
+  <span><a href="https://www.udom.ac.tz">University of Dodoma</a></span>
+</h2>
+{% for program in programs %}
+<div class="py-3">
+  <div class="card">
+    <div class="card-header">
+      <span class="fw-bold h5">{{program.name}}</span>&middot;
+    </div>
+    <div class="card-body">{{program.description}}</div>
+
+    <div class="card-footer text-center">
+      <a href="{% url 'program_detail' program.pk %}"
+        ><span class="fw-bold bi bi-eye mx-1">View more</span></a
+      >
+    </div>
+  </div>
+  
+</div>
+
+{% endfor %}
+
+{% endblock content %}
