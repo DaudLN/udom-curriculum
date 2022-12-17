@@ -54,12 +54,12 @@
             </li>
            
           </ul>
-          <form role="search" class="d-flex">
+          <form role="search" class="d-flex" method="post" action="{% url 'search_program' %}">
+            {% csrf_token %}
             <input
               class="form-control mx-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
+              placeholder="Search program"
+              name="search"
             />
             <input type="submit" value="Search" class="btn btn-outline-primary">
           </form>
