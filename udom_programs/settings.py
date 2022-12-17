@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['udom-curriculum.up.railway.app']
 
+CSRF_TRUSTED_ORIGINS = ['https://udom-curriculum.up.railway.app']
 # Application definition
 
 INSTALLED_APPS = [
