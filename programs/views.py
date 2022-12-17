@@ -6,9 +6,10 @@ from django.views.generic import ListView, DetailView
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
-from .models import Program
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Image
+from .models import Program
+
 # Create your views here.
 
 
