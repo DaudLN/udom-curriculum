@@ -1,7 +1,7 @@
 import io
 from django.http import HttpResponse, FileResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, DetailView
 from reportlab.pdfgen import canvas
 # from reportlab.pdfbase import pdfmetrics
