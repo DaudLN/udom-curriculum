@@ -62,7 +62,14 @@ class ProgramDetailView(DetailView):
 
 
 def search_program(request):
-    return HttpResponse("Hello world")
+
+    if request.method == "POST":
+        search = request.POST['search']
+        programs = Program.objects.filter(name__icontains=search)
+        return render(request, "program_search.html", {"programs": programs})
+    else:
+        return render(request, "program_search.html", {})
+
 
 
 def program_pdf(request):
