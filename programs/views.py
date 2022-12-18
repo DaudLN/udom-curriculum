@@ -22,43 +22,9 @@ class ProgramListView(ListView):
     number_in_page = Program.objects.all().count()
 
 
-class ProgramDetailView(DetailView):
-    model = Program
-    template_name: str = 'program_detail.html'
-
-    def generate_pdf(request):
-        programs = Program.objects.all()
-        # Create a file-like buffer to receive PDF data.
-        buffer = io.BytesIO()
-
-        # Create the PDF object, using the buffer as its "file."
-        p = canvas.Canvas(buffer, pagesize=letter)
-
-        textobj = p.beginText()
-        textobj.setTextOrigin(inch, inch)
-        textobj.setFont("Helvetica", 14)
-        # Draw things on the PDF. Here's where the PDF generation happens.
-        # See the ReportLab documentation for the full list of functionality.
-        lines = []
-        for program in programs:
-            lines.append(program.name)
-            lines.append(program.college)
-            lines.append(program.description)
-            lines.append(str(program.fee))
-
-        for line in lines:
-            textobj.textLine(line)
-
-        # Close the PDF object cleanly, and we're done.
-        p.drawText(textobj)
-        p.showPage()
-        buffer.seek(0)
-        # FileResponse sets the Content-Disposition header so that browsers
-        # present the option to save the file.
-        # buffer.seek(0)
-        return FileResponse(buffer,
-                            as_attachment=True,
-                            filename='programs.pdf')
+def program_detail(request, program):
+    program = get_object_or_404(Program, slug=program)
+    return render(request, "program_detail.html", {"program": program})
 
 
 def search_program(request):
@@ -71,41 +37,9 @@ def search_program(request):
         return render(request, "program_search.html", {})
 
 
-
-def program_pdf(request):
-    programs = Program.objects.all()
-    #Create bystream buffer
-    buff = io.BytesIO()
-    #Create canvas
-    canv = canvas.Canvas(buff, pagesize=letter, bottomup=0)
-    #create text object
-    textobj = canv.beginText()
-    textobj.setTextOrigin(inch, inch)
-    textobj.setFont("Helvetica", 14)
-
-    # Add some lines
-
-    lines = []
-    for program in programs:
-        lines.append(program.name)
-        lines.append(program.college)
-        lines.append(program.description)
-        lines.append(program.years_of_study)
-
-    for line in lines:
-        textobj.textLine(line)
-    #finish up
-
-    canv.drawText(textobj)
-    canv.showPage()
-    buff.seek(0)
-
-    return FileResponse(buff, as_attachment=True, filename="program.pdf")
-
-
-def generate_pdf(request, pk):
+def generate_pdf(request, program):
     # Get the Program object
-    program = get_object_or_404(Program, pk=pk)
+    program = get_object_or_404(Program, slug=program)
 
     # Create the PDF object
     response = HttpResponse(content_type='application/pdf')
@@ -155,11 +89,8 @@ def generate_pdf(request, pk):
         elements.append(Paragraph(f"{program.skills}", style=paragrap_style))
     else:
         pass
-    if program.competences:
-        elements.append(Paragraph("Competences", styles["Heading3"]))
-        elements.append(Paragraph(f"{program.competences}", style=paragrap_style))
-    else:
-        pass
+    elements.append(Paragraph("Competences", styles["Heading3"]))
+    elements.append(Paragraph(f"{program.competences}", style=paragrap_style))
     elements.append(Paragraph("Special requirements", styles["Heading3"]))
     elements.append(
         Paragraph(f"{program.special_requirements}", style=paragrap_style))
