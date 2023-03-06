@@ -1,5 +1,5 @@
 import io
-from django.db import Q
+from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
