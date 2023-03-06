@@ -139,7 +139,7 @@ def generate_pdf(request, program):
         elements.append(Spacer(1, 12))
 
     if program.special_requirements:
-        elements.append(Paragraph("Competences", style=section_head_style))
+        elements.append(Paragraph("Special requirements", style=section_head_style))
         elements.append(Paragraph(program.special_requirements, style=paragraph_style))
         elements.append(Spacer(1, 12))
 
