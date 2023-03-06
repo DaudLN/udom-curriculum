@@ -41,9 +41,9 @@ def search_program(request):
         return render(request, "program_search.html", {})
 
 
-def generate_pdf(request, program):
+def generate_pdf(request, slug):
     # Get the Program object
-    program = get_object_or_404(Program, slug=program)
+    program = get_object_or_404(Program, slug=slug)
 
     # Create the PDF object
     response = HttpResponse(content_type="application/pdf")
