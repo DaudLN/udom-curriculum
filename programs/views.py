@@ -172,23 +172,47 @@ def generate_pdf(request, program):
     program_head = f"{program.name}"
     elements.append(Paragraph(program_head, style=program_head_style))
     elements.append(Spacer(1, 24))
+
     if program.description:
         elements.append(Paragraph("Program Description", style=section_head_style))
         elements.append(Paragraph(program.description, style=paragraph_style))
         elements.append(Spacer(1, 12))
+
     if program.years_of_study:
         elements.append(Paragraph("Years of Study", style=section_head_style))
         elements.append(
             Paragraph(f"{program.years_of_study} years", style=paragraph_style)
         )
         elements.append(Spacer(1, 12))
+
     if program.fee:
         elements.append(Paragraph("Tuition Fee", style=section_head_style))
         elements.append(Paragraph(f"Tsh {program.fee:,}", style=paragraph_style))
         elements.append(Spacer(1, 12))
+
     if program.knowledge:
         elements.append(Paragraph("Knowledge Obtained", style=section_head_style))
         elements.append(Paragraph(program.knowledge, style=paragraph_style))
+        elements.append(Spacer(1, 12))
+
+    if program.skills:
+        elements.append(Paragraph("Skills Obtained", style=section_head_style))
+        elements.append(Paragraph(program.skills, style=paragraph_style))
+        elements.append(Spacer(1, 12))
+
+    if program.competences:
+        elements.append(Paragraph("Competences", style=section_head_style))
+        elements.append(Paragraph(program.competences, style=paragraph_style))
+        elements.append(Spacer(1, 12))
+
+    if program.special_requirements:
+        elements.append(Paragraph("Competences", style=section_head_style))
+        elements.append(Paragraph(program.special_requirements, style=paragraph_style))
+        elements.append(Spacer(1, 12))
+
+    if program.fields_of_work:
+        elements.append(Paragraph("Competences", style=section_head_style))
+        elements.append(Paragraph(program.fields_of_work, style=paragraph_style))
         elements.append(Spacer(1, 12))
 
     # Build the PDF document
