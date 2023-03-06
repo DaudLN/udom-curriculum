@@ -25,10 +25,19 @@ SECRET_KEY = "django-insecure-837es7d5wpn&e4nch!mv0_wj7g9ytwz90qiayq^f-7$j!m3p4+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ["udom-curriculum.up.railway.app"]
 ALLOWED_HOSTS = ["udomecurriculum.up.railway.app"]
-CSRF_TRUSTED_ORIGINS = ["udomecurriculum.up.railway.app"]
-# Application definition
+CSRF_TRUSTED_ORIGINS = ["https://udomecurriculum.up.railway.app"]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ["https://udomecurriculum.up.railway.app"]
+CORS_ALLOW_METHODS = ["GET", "POST"]
+CORS_ALLOW_HEADERS = ["Content-Type", "Authorization"]
+
+
+# # ALLOWED_HOSTS = ["udom-curriculum.up.railway.app"]
+# ALLOWED_HOSTS = ["udomecurriculum.up.railway.app"]
+# CSRF_TRUSTED_ORIGINS = ["udomecurriculum.up.railway.app"]
+# # Application definition
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -135,12 +144,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ["https://udomecurriculum.up.railway.app"]
-CORS_ALLOW_METHODS = ["GET", "POST"]
-CORS_ALLOW_HEADERS = ["Content-Type", "Authorization"]
-
 
 # CORS_ORIGIN_WHITELIST = (
 #     "http://localhost:3000",
