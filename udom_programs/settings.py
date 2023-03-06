@@ -26,8 +26,8 @@ SECRET_KEY = "django-insecure-837es7d5wpn&e4nch!mv0_wj7g9ytwz90qiayq^f-7$j!m3p4+
 DEBUG = True
 
 # ALLOWED_HOSTS = ["udom-curriculum.up.railway.app"]
-ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ["https://udomecurriculum.up.railway.app/"]
+ALLOWED_HOSTS = ["https://udomecurriculum.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://udomecurriculum.up.railway.app"]
 # Application definition
 
 INSTALLED_APPS = [
