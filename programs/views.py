@@ -167,7 +167,9 @@ def generate_pdf(request, program):
         )
     )
     elements.append(Spacer(1, 12))
-    program_head = f"{program.name} ({program.college})"
+    elements.append(Paragraph(program.college, style=university_head_style))
+    elements.append(Spacer(1, 12))
+    program_head = f"{program.name}"
     elements.append(Paragraph(program_head, style=program_head_style))
     elements.append(Spacer(1, 24))
     if program.description:
