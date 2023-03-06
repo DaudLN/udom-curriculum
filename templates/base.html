@@ -161,6 +161,7 @@
     ></script>
     <script>
       $(document).ready((e) => {
+        $("#form").on("submit",(e)=>e.preventDefault())
         $("#search_input").on("keyup", (e) => {
           e.preventDefault()
           let programs_list = `<h2 class="pt-3">
