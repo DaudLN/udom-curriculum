@@ -1,13 +1,10 @@
 import io
 from django.http import HttpResponse, JsonResponse
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import ListView, DetailView
-from reportlab.pdfgen import canvas
+from django.views.generic import ListView
 
 # from reportlab.pdfbase import pdfmetrics
 from reportlab.lib import enums
-from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 from .models import Program
 from reportlab.lib.styles import getSampleStyleSheet
@@ -41,9 +38,9 @@ def search_program(request):
         return render(request, "program_search.html", {})
 
 
-def generate_pdf(request, slug):
+def generate_pdf(request, program):
     # Get the Program object
-    program = get_object_or_404(Program, slug=slug)
+    program = get_object_or_404(Program, slug=program)
 
     # Create the PDF object
     response = HttpResponse(content_type="application/pdf")
