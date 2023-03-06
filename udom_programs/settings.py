@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-837es7d5wpn&e4nch!mv0_wj7g9ytwz90qiayq^f-7$j!m3p4+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # ALLOWED_HOSTS = ["udom-curriculum.up.railway.app"]
 ALLOWED_HOSTS = ["udomecurriculum.up.railway.app"]
@@ -136,8 +136,14 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-CORS_ORIGIN_WHITELIST = (
-    "http://localhost:3000",
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-)
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ["https://udomecurriculum.up.railway.app"]
+CORS_ALLOW_METHODS = ["GET", "POST"]
+CORS_ALLOW_HEADERS = ["Content-Type", "Authorization"]
+
+
+# CORS_ORIGIN_WHITELIST = (
+#     "http://localhost:3000",
+#     "http://localhost:8000",
+#     "http://127.0.0.1:8000",
+# )
