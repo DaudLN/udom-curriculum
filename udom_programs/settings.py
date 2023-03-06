@@ -152,31 +152,10 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-
-# REST FRAMEWORK
-
-# REST_FRAMEWORK = {
-#     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
-#     "DEFAULT_METADATA_CLASS": None,
-#     "DEFAULT_AUTHENTICATION_CLASSES": (
-#         "rest_framework.authentication.SessionAuthentication",
-#         "rest_framework.authentication.TokenAuthentication",
-#     ),
-#     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
-#     "DEFAULT_FILTER_BACKENDS": (
-#         "django_filters.rest_framework.DjangoFilterBackend",
-#         "rest_framework.filters.OrderingFilter",
-#         "rest_framework.filters.SearchFilter",
-#     ),
-#     "EXCEPTION_HANDLER": "utils.exception_handler.custom_exception_handler",
-#     "UPLOADED_FILES_USE_URL": False,
-#     "DATETIME_FORMAT": "%Y-%m-%dT%H:%M:%S.%fZ",
-#     "TEST_REQUEST_DEFAULT_FORMAT": "json",
-#     "DEFAULT_THROTTLE_RATES": {"anon": "10/minute", "user": "100/minute"},
-# }
-
-# # remove the "Django REST framework" header from responses
-# REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ("rest_framework.renderers.JSONRenderer",)
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
+    "DEFAULT_METADATA_CLASS": None,
+}
 
 
 # CORS_ORIGIN_WHITELIST = (

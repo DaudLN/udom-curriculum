@@ -10,12 +10,12 @@ from .renderers import CustomJSONRenderer
 
 
 class ProgramListAPIView(generics.ListAPIView):
-    renderer_classes = [CustomJSONRenderer]
+    # renderer_classes = [CustomJSONRenderer]
     serializer_class = ProgramSerializer
     queryset = Program.objects.all()
 
 
 class ProgramRetrieveAPIView(generics.RetrieveAPIView):
-    renderer_classes = [CustomJSONRenderer]
+    # renderer_classes = [CustomJSONRenderer]
     serializer_class = ProgramSerializer
     queryset = Program.objects.all()
